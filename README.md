@@ -3,7 +3,7 @@
 A modern HR Leave Management System built with **Next.js 15** and **React**, designed to streamline employee leave requests and HR administration.
 
 > 🔗 Backend API: [hr-management-api](https://github.com/rojarasheed/hr-management-api)  
-> 🚀 Live Demo: *Coming soon*
+> 🚀 Live Demo: https://hr-management-frontend-opal.vercel.app/
 
 ---
 
