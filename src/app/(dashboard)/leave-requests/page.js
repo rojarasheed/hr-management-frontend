@@ -32,11 +32,6 @@ function Modal({ title, onClose, children }) {
 
 export default function LeaveRequestsPage() {
     const { clientIsAdmin, user } = useAuth();
-const [clientclientIsAdmin, setClientclientIsAdmin] = useState(false);
-
-useEffect(() => {
-    setClientclientIsAdmin(clientIsAdmin);
-}, [clientIsAdmin]);
 
     const [requests,    setRequests]    = useState([]);
     const [leaveTypes,  setLeaveTypes]  = useState([]);
@@ -76,10 +71,10 @@ useEffect(() => {
 
     useEffect(() => {
         api.get('/leave-types').then(r => setLeaveTypes(r.data.data ?? r.data)).catch(() => {});
-        if (clientclientIsAdmin) {
+        if (clientIsAdmin) {
             api.get('/employees').then(r => setEmployees(r.data.data ?? r.data)).catch(() => {});
         }
-    }, [clientclientIsAdmin]);
+    }, [clientIsAdmin]);
 
     const handleApplySubmit = async e => {
         e.preventDefault();
