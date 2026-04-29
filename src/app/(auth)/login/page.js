@@ -19,7 +19,7 @@ export default function LoginPage() {
             const response = await api.post('/login', data);
             const { token, user, employee } = response.data;
             setAuth(token, user, employee);
-            router.push('/dashboard');
+            router.replace('/dashboard');
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed. Please try again.');
         } finally {

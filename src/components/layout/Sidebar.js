@@ -9,6 +9,7 @@ const menuItems = [
     { label: 'Departments',    href: '/departments',    icon: '🏢', adminOnly: true  },
     { label: 'Leave Requests', href: '/leave-requests', icon: '📝', adminOnly: false },
     { label: 'Leave Types',    href: '/leave-types',    icon: '📋', adminOnly: true  },
+    { label: 'Calendar',       href: '/calendar',       icon: '📅', adminOnly: true  },
 ];
 
 export default function Sidebar() {

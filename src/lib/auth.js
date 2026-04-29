@@ -1,21 +1,44 @@
 import Cookies from 'js-cookie';
 
-export const setAuth = (token, user, employee) => {
-    Cookies.set('token', token, { expires: 7 });
-    Cookies.set('user', JSON.stringify(user), { expires: 7 });
-    Cookies.set('employee', JSON.stringify(employee), { expires: 7 });
+const AUTH_COOKIE_OPTIONS = {
+    expires: 7,
+    sameSite: 'strict',
 };
 
-export const getToken = () => Cookies.get('token');
+const COOKIE_KEYS = {
+    token: 'token',
+    user: 'user',
+    employee: 'employee',
+};
+
+const safeJsonParse = (value) => {
+    try {
+        return value ? JSON.parse(value) : null;
+    } catch {
+        return null;
+    }
+};
+
+export const setAuth = (token, user, employee) => {
+    Cookies.set(COOKIE_KEYS.token, token, AUTH_COOKIE_OPTIONS);
+    Cookies.set(COOKIE_KEYS.user, JSON.stringify(user), AUTH_COOKIE_OPTIONS);
+    Cookies.set(COOKIE_KEYS.employee, JSON.stringify(employee), AUTH_COOKIE_OPTIONS);
+};
+
+export const getToken = () => {
+    return Cookies.get(COOKIE_KEYS.token) || null;
+};
 
 export const getUser = () => {
-    const user = Cookies.get('user');
-    return user ? JSON.parse(user) : null;
+    return safeJsonParse(Cookies.get(COOKIE_KEYS.user));
 };
 
 export const getEmployee = () => {
-    const employee = Cookies.get('employee');
-    return employee ? JSON.parse(employee) : null;
+    return safeJsonParse(Cookies.get(COOKIE_KEYS.employee));
+};
+
+export const isAuthenticated = () => {
+    return Boolean(getToken());
 };
 
 export const isAdmin = () => {
@@ -23,11 +46,16 @@ export const isAdmin = () => {
     return employee?.role === 'admin';
 };
 
-export const isAuthenticated = () => !!getToken();
+export const clearAuth = () => {
+    Cookies.remove(COOKIE_KEYS.token);
+    Cookies.remove(COOKIE_KEYS.user);
+    Cookies.remove(COOKIE_KEYS.employee);
+};
 
 export const logout = () => {
-    Cookies.remove('token');
-    Cookies.remove('user');
-    Cookies.remove('employee');
-    window.location.href = '/login';
+    clearAuth();
+
+    if (typeof window !== 'undefined') {
+        window.location.href = '/login';
+    }
 };
