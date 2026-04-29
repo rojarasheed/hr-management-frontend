@@ -70,32 +70,6 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## Project Structure
-src/
-├── app/
-│   ├── (auth)/
-│   │   └── login/          # Login page
-│   ├── (dashboard)/
-│   │   ├── layout.js       # Dashboard layout with sidebar
-│   │   ├── dashboard/      # Dashboard with stats & chart
-│   │   ├── employees/      # Employee management
-│   │   ├── departments/    # Department management
-│   │   ├── leave-requests/ # Leave request management
-│   │   └── leave-types/    # Leave type configuration
-│   ├── globals.css         # Global styles
-│   └── layout.js           # Root layout
-├── components/
-│   └── layout/
-│       ├── Sidebar.js      # Navigation sidebar
-│       └── TopBar.js       # Top navigation bar
-├── hooks/
-│   └── useAuth.js          # Authentication hook
-└── lib/
-├── axios.js            # Axios instance
-└── auth.js             # Auth utilities
-
----
-
 ## Demo Credentials
 
 | Role | Email | Password |
